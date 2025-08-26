@@ -14,15 +14,14 @@
         android:text="This is a KioskDemo"
         android:layout_centerInParent="true"
         android:textColor="@color/white"/>
-    <ImageView
+    <View
         android:id="@+id/iv_logo"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="70dp"
         android:layout_toLeftOf="@id/btn_setting"
-        android:scaleType="centerInside"
-        android:background="@drawable/logo_wizarpos"/>
+        android:scaleType="centerInside"/>
     <Button
         android:id="@+id/btn_setting"
         android:layout_width="50dp"

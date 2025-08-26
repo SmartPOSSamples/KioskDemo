@@ -54,9 +54,8 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        // 进入全屏模式
+        // Enter full-screen mode
         Window window = getWindow();
-        // 设置系统的ui进入沉浸模式
         window.getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
                         View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY |
@@ -65,9 +64,9 @@ public class MainActivity extends AppCompatActivity {
         deviceAdminName = new ComponentName(getApplicationContext(),MyDeviceAdminReceiver.class);
         dpm = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
         if(dpm.isAdminActive(deviceAdminName)){
-            startMain();//跳转主页面的逻辑
+            startMain();
         }else {
-            satrtOpenDevicer();//主动询问设备管理者权限的逻辑
+            satrtOpenDevicer();
         }
 
 //        getMacAddress();
@@ -75,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * 关闭 kiosk，可以给各种按钮调用，用来退出 LockTaskMode
+     * Closing the kiosk to exit the LockTaskMode.
      * @param view
      */
     public void stopKiosk(View view){
@@ -107,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
     private void startMain() {
 
         try {
-            // 允许当前程序开启 LockTaskMode，如果当前还没有取得应用管理的权限，这行代码会报错闪退，所以也可以嵌套一个try语句块什么的
+            // Allow the current program to enable LockTaskMode. If the current program has not yet obtained the application management permission, this line of code will throw an error and cause the app to crash. Therefore, it is also possible to nest a try statement block or something like that.
             dpm.setLockTaskPackages(deviceAdminName,new String[]{getPackageName()});
         }catch (Exception e){
             e.printStackTrace();
@@ -121,9 +120,9 @@ public class MainActivity extends AppCompatActivity {
         ComponentName componentName = new ComponentName(this, MyDeviceAdminReceiver.class);
         Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
         intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, componentName);
-        intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "请求设备管理权限...");
+        intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "Request device management permission...");
         /*
-         * 不能直接startActivity  因为可能在激活的时候用户点击了取消,这时候CheckBox状态是勾选的,但是实际是没激活的,
+         * You cannot directly call startActivity because it is possible that the user clicks the cancel button during activation. At this point, the CheckBox is checked, but in fact, the activation has not occurred.
          */
         startActivityForResult(intent, DEVICECOMPONENTCODE);
     }
@@ -164,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-//        return "无法获取";
+//        return "Can't get";
 //    }
 //    private String getMacAddressFromNetworkInterface() {
 //        try {

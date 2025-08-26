@@ -7,7 +7,7 @@ android {
     compileSdk 36
 
     defaultConfig {
-        applicationId "com.wizarpos.demo.kioskdemo"
+        applicationId "com.cloudpos.demo.kioskdemo"
         minSdk 22
         targetSdk 36
         versionCode 1
